@@ -1,0 +1,39 @@
+name: Feature request
+description: New feature or system improvement
+title: "[FEATURE]"
+labels: ["type: feature", "status: todo"]
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What should be implemented?
+      placeholder: Describe the feature in detail
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this needed?
+    validations:
+      required: false
+
+  - type: textarea
+    id: technical_notes
+    attributes:
+      label: Technical notes
+      description: Unity / Python / architecture notes
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: Unity (C#)
+        - label: Python backend / ML
+        - label: Both
