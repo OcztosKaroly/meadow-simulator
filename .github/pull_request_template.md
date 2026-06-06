@@ -1,14 +1,14 @@
-## 📌 Related Issue
+## Related Issue
 Closes #
 
 ---
 
-## 🧠 What changed?
+## What changed?
 - 
 
 ---
 
-## 🧪 Type of change
+## Type of change
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Refactor
@@ -16,20 +16,20 @@ Closes #
 
 ---
 
-## 🎮 Unity checks
+## Unity checks
 - [ ] No console errors
 - [ ] Scene loads correctly
 - [ ] Prefabs not broken
 
 ---
 
-## 🐍 Python checks
+## Python checks
 - [ ] Script runs without errors
 - [ ] API/ML pipeline works correctly
 
 ---
 
-## ✅ Checklist
+## Checklist
 - [ ] Code is tested locally
 - [ ] No debug prints left
 - [ ] Naming is consistent
