@@ -36,4 +36,3 @@ body:
       options:
         - label: Unity (C#)
         - label: Python backend / ML
-        - label: Both
