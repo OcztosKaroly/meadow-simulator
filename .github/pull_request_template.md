@@ -31,6 +31,5 @@ Closes #
 
 ## Checklist
 - [ ] Code is tested locally
-- [ ] No debug prints left
 - [ ] Naming is consistent
 - [ ] Ready for review
