@@ -13,7 +13,7 @@ public class MainMenuController : MonoBehaviour
     /// <param name="sceneName">The name of the scene to load.</param>
     public void LoadSceneByName(string sceneName)
     {
-        string logMessage = $"Loading scene: \"{ sceneName.ToString() }\"";
+        string logMessage = $"Loading scene: \"{sceneName.ToString()}\"";
         Debug.Log(logMessage);
         SceneManager.LoadScene(sceneName);
     }
@@ -22,13 +22,13 @@ public class MainMenuController : MonoBehaviour
     /// Quits the application. 
     /// Note: If running in the Unity Editor, it stops play mode.
     /// </summary>
-    public void Quit() 
+    public void Quit()
     {
         Debug.Log("Quitting application...");
         Application.Quit();
 
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

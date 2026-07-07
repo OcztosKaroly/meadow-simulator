@@ -1,5 +1,3 @@
-using UnityEngine;
-
 /// <summary>
 /// Defines every types of scenes in the application.
 /// </summary>
@@ -14,7 +12,7 @@ public enum ESceneType
     /// The settings scene where users can configure application preferences.
     /// </summary>
     Settings,
-    
+
     /// <summary>
     /// The simulation scene where the main gameplay takes place.
     /// </summary>
