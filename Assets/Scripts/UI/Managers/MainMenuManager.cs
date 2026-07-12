@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
+using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -37,13 +38,8 @@ namespace MainMenu
         public GameObject mainCanvas;
 
         [Header("LOADING SCREEN")]
-        [Tooltip("If this is true, the loaded scene won't load until receiving user input")]
-        public bool waitForInput = true;
-        public GameObject loadingMenu;
-        [Tooltip("The loading bar Slider UI element in the Loading Screen")]
-        public Slider loadingBar;
-        public TMP_Text loadPromptText;
-        public Key userPromptKey;
+        public GameObject loadingScreen;
+
 
         void Start()
         {
@@ -96,12 +92,17 @@ namespace MainMenu
             mainMenu.SetActive(true);
         }
 
-        public void LoadScene(string scene)
+        public void LoadScene(string sceneName)
         {
-            if (scene != "")
-            {
-                StartCoroutine(LoadAsynchronously(scene));
-            }
+            if (string.IsNullOrWhiteSpace(sceneName))
+                return;
+
+            loadingScreen.SetActive(true);
+
+            LoadingManager loadingManager = loadingScreen.GetComponent<LoadingManager>();
+            loadingManager.LoadScene(sceneName);
+
+            mainCanvas.SetActive(false);
         }
 
         public void DisablePlayGame()
@@ -137,55 +138,12 @@ namespace MainMenu
 
         public void QuitGame()
         {
+            Debug.Log("Quitting application...");
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
 				Application.Quit();
 #endif
-        }
-
-        // Load Bar synching animation
-        IEnumerator LoadAsynchronously(string sceneName)
-        { // scene name is just the name of the current scene being loaded
-            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-            operation.allowSceneActivation = false;
-            mainCanvas.SetActive(false);
-            loadingMenu.SetActive(true);
-
-            while (!operation.isDone)
-            {
-                float progress = Mathf.Clamp01(operation.progress / .95f);
-                loadingBar.value = progress;
-
-                if (operation.progress >= 0.9f && waitForInput)
-                {
-                    loadingBar.value = 1;
-
-                    if (userPromptKey == Key.None)
-                    {
-                        loadPromptText.text = $"Press any key to continue";
-
-                        if (Keyboard.current.anyKey.wasPressedThisFrame)
-                        {
-                            operation.allowSceneActivation = true;
-                        }
-                    }
-                    else {
-                        loadPromptText.text = $"Press \"{userPromptKey.ToString().ToUpper()}\" to continue";
-                        
-                        if (Keyboard.current[userPromptKey].wasPressedThisFrame)
-                        {
-                            operation.allowSceneActivation = true;
-                        }
-                    }
-                }
-                else if (operation.progress >= 0.9f && !waitForInput)
-                {
-                    operation.allowSceneActivation = true;
-                }
-
-                yield return null;
-            }
         }
     }
 }
